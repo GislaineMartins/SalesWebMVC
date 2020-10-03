@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace SalesWebMVC.Services {
     public class SellerService {
@@ -26,7 +27,7 @@ namespace SalesWebMVC.Services {
         }
 
         public Seller FindById(int id) {
-            return _context.Seller.FirstOrDefault(obj => obj.Id == id);
+            return _context.Seller.Include(obj=> obj.Departament).FirstOrDefault(obj => obj.Id == id);
 
         }
 
